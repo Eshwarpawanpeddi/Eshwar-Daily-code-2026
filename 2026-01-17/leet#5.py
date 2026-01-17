@@ -1,12 +1,19 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        storage = [[None for _ in range(99)] for _ in range(numRows)]
-        length = len(s)
-        i =0
-        j =0
-        for i in range(length):
-            storage[i][j] = s[i]
-            if i == numRows - 1:
-                j = j + 1
-                i = 0
-        return storage 
+        if numRows == 1 or numRows >= len(s):
+            return s
+
+        rows = [""] * numRows
+        index, step = 0, 1
+
+        for char in s:
+            rows[index] += char
+       
+            if index == 0:
+                step = 1
+            elif index == numRows - 1:
+                step = -1
+            
+            index += step
+
+        return "".join(rows)
