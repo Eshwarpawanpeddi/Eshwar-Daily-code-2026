@@ -10,6 +10,7 @@ import os
 def generate_date_folders(start_date, end_date):
     """
     Generate folders for each date between start_date and end_date (inclusive).
+    Each folder contains a .gitkeep file to ensure it's tracked by Git.
     
     Args:
         start_date: Starting date (datetime object)
@@ -22,9 +23,16 @@ def generate_date_folders(start_date, end_date):
         # Format date as YYYY-MM-DD
         folder_name = current_date.strftime("%Y-%m-%d")
         
-        # Create folder if it doesn't exist
-        if not os.path.exists(folder_name):
-            os.makedirs(folder_name)
+        # Create folder (exist_ok=True avoids race conditions)
+        folder_existed = os.path.exists(folder_name)
+        os.makedirs(folder_name, exist_ok=True)
+        
+        # Create .gitkeep file to ensure Git tracks the folder
+        gitkeep_path = os.path.join(folder_name, ".gitkeep")
+        if not os.path.exists(gitkeep_path):
+            open(gitkeep_path, 'a').close()
+        
+        if not folder_existed:
             folders_created += 1
             print(f"Created folder: {folder_name}")
         else:
