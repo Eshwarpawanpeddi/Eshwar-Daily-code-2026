@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-"""
-Script to generate folder structure with dates from today to Dec 31, 2026.
-Each folder is named with the date in YYYY-MM-DD format.
-"""
 
 from datetime import datetime, timedelta
 import os
