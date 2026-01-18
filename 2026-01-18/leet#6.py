@@ -10,5 +10,7 @@ class Solution:
             my_list = my_list[::-1]
             if my_list[0] =="0":
                 my_list.pop(0)
-            final_ans = int(symbol + ''.join(my_list))
+            final_ans = []
+            final_ans.append(symbol)
+            final_ans.join(my_list)]
         return final_ans
