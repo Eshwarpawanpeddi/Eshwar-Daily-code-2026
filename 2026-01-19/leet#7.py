@@ -10,4 +10,6 @@ class Solution:
                 answer.append(char)
             elif char.isalpha() == True or char in ['+', '-', '.']:     
                 break
-        return answer
+        str_conv = ''.join(answer)
+        return int(str_conv)
+    
