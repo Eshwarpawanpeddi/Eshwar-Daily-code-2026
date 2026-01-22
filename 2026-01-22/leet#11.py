@@ -1,5 +1,5 @@
 class Solution:
-    def area(i,j):
+    def area(self,i,j):
         return i*j
 
     def maxArea(self, height: List[int]) -> int:
@@ -8,7 +8,7 @@ class Solution:
         max_area = 0
         for i in range(len(height)):
             for j in range(len(height)):
-                temp_area = area(height[i], height[j])
+                temp_area = self.area(height[i], height[j])
                 if temp_area > max_area:
                     max_area = temp_area
         return max_area
