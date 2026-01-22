@@ -1,9 +1,9 @@
 class Solution:
     def area(self,leng,i,j):
         if i<j:
-            count = j
-        else:            
             count = i
+        else:            
+            count = j
         return count * leng
 
     def maxArea(self, height: List[int]) -> int:
