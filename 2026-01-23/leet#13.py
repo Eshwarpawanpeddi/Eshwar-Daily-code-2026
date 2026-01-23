@@ -1,19 +1,17 @@
 class Solution:
-    def intToRoman(self, num: int) -> str:
-        # Define all symbols from largest to smallest
-        # We include the "subtractive" cases (900, 400, etc.) as their own symbols
-        symbols = [
-            (1000, "M"), (900, "CM"), (500, "D"), (400, "CD"),
-            (100, "C"), (90, "XC"), (50, "L"), (40, "XL"),
-            (10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")
-        ]
+    def romanToInt(self, s: str) -> int:
+        translations = {
+            "I": 1, "V": 5, "X": 10, "L": 50,
+            "C": 100, "D": 500, "M": 1000
+        }
         
-        result = []
+        number = 0
+        # Replace special cases to make them easier to count
+        s = s.replace("IV", "IIII").replace("IX", "VIIII")
+        s = s.replace("XL", "XXXX").replace("XC", "LXXXX")
+        s = s.replace("CD", "CCCC").replace("CM", "DCCCC")
         
-        for value, symbol in symbols:
-            # While the current number is bigger than the Roman value
-            while num >= value:
-                result.append(symbol) # Add the symbol
-                num -= value          # Subtract the value
-                
-        return "".join(result)
+        for char in s:
+            number += translations[char]
+            
+        return number
