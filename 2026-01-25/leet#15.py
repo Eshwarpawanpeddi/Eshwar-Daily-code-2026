@@ -1,19 +1,30 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        triplet = []
+        nums.sort()
         result = []
+        
         for i in range(len(nums)):
-            for j in range(len(nums)):
-                if i == j:
-                    continue
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            
+            left, right = i + 1, len(nums) - 1
+            
+            while left < right:
+                total = nums[i] + nums[left] + nums[right]
+                
+                if total < 0:
+                    left += 1
+                elif total > 0:
+                    right -= 1
                 else:
-                    for k in range(len(nums)):
-                        if k == i or k == j:
-                            continue
-                        else:
-                            if nums[i] + nums[j] + nums[k] == 0:
-                                triplet = sorted([nums[i], nums[j], nums[k]])
-                                if triplet not in result:
-                                    result.append(triplet)
-        return triplet
-    
+                    result.append([nums[i], nums[left], nums[right]])
+                    
+                    while left < right and nums[left] == nums[left + 1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right - 1]:
+                        right -= 1
+                        
+                    left += 1
+                    right -= 1
+                    
+        return result
