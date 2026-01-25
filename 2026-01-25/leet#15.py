@@ -14,6 +14,6 @@ class Solution:
                             if nums[i] + nums[j] + nums[k] == 0:
                                 triplet = sorted([nums[i], nums[j], nums[k]])
                                 if triplet not in result:
-                                    self.result.append(triplet)
+                                    result.append(triplet)
         return triplet
     
