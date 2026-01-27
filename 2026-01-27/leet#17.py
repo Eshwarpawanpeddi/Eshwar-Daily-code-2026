@@ -13,5 +13,13 @@ class Solution:
         diglist = digits.split()
 
         for nums in diglist:
-            
+            temp = ['']
+            for d in nums:
+                letters = phone_map[d]
+                new_temp = []
+                for prefix in temp:
+                    for letter in letters:
+                        new_temp.append(prefix + letter)
+                temp = new_temp
+            result.extend(temp)
             
