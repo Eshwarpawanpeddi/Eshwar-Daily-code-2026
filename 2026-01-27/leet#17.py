@@ -4,22 +4,18 @@ class Solution:
             return []
         
         phone_map = {
-            '1':'','2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',
-            '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz' ,'0': ' '
+            '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',
+            '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'
         }
         
-        result = []
         
-        diglist = digits.split()
-
-        for nums in diglist:
-            temp = ['']
-            for d in nums:
-                letters = phone_map[d]
-                new_temp = []
-                for prefix in temp:
-                    for letter in letters:
-                        new_temp.append(prefix + letter)
-                temp = new_temp
-            result.extend(temp)
+        result = [""]
+        
+        for d in digits:
+            temp = []
+            for combination in result:
+                for letter in phone_map[d]:
+                    temp.append(combination + letter)
+            result = temp
             
+        return result
