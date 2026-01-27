@@ -10,4 +10,8 @@ class Solution:
         
         result = []
         
-        
+        diglist = digits.split()
+
+        for nums in diglist:
+            
+            
